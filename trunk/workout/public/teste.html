@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+
+var user = '{"login":"calmeida","password":"578","height":1.9,"name":"Christiano Almeida","date_of_birth":"1977-12-28 00:00:00","about_me":"outro teste","weight":97}';
+
+//var user = '{"password":"123","login":"cmilfont"}';
+
+function enviar() {
+	var host = '/workout/public/users/calmeida?callback=abrirRegistros';
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+        if(xhr.readyState == 4  && xhr.status == 200) {
+        //alert(xhr.readyState + ' - ' + xhr.status + ' - ' + );
+           document.getElementById('resultado').innerHTML = xhr.responseText;
+        }
+    };
+    
+	var params = user;/*"id=1&name=milfont";*/
+	/*alert(params);*/
+	xhr.open("put", host);
+	xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.setRequestHeader("Content-length", params.length);
+	xhr.send(params);
+};
+</script>
+<body>
+<form action="#" method="options" enctype="multipart/form-data">
+<input id="login" type="text">
+<input type="submit" onclick="enviar();return false;">
+<div id="resultado"></div>
+</form>
+</body>
+</html>
